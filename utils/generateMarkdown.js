@@ -2,29 +2,49 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   var licenseBadge;
-  if(data.license = 'MIT'){
+  if(license === 'MIT'){
     licenseBadge = 'https://img.shields.io/badge/license-MIT-blue';
   }
-  if(data.license = 'MIT'){
-    licenseBadge = 'https://img.shields.io/badge/license-MIT-blue';
+  else if(license === 'APACHE 2.0'){
+    licenseBadge = 'https://img.shields.io/badge/license-Apache-blue';
   }
-  if(data.license = 'MIT'){
-    licenseBadge = 'https://img.shields.io/badge/license-MIT-blue';
+  else if(license === 'GPL 3.0'){
+    licenseBadge = 'https://img.shields.io/badge/license-GPL-blue';
   }
-  if(data.license = 'MIT'){
-    licenseBadge = 'https://img.shields.io/badge/license-MIT-blue';
+  else if(license === 'BSD 3'){
+    licenseBadge = 'https://img.shields.io/badge/license-BSD-blue';
   }
+  else{
+    return licenseBadge;
+  }
+  return licenseBadge;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+  var licenseLink;
+  var licenseBadge = renderLicenseBadge(license);
+  if(!licenseBadge || license==='None'){
+    licenseLink = "";
+  }
+  else{
+    licenseLink = `![GitHub license](${licenseBadge})`;
+  }
+  return licenseLink;
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  renderLicenseLink(license);
-  return ``;
+  var licenseSection;
+  if(license === 'None'){
+    licenseSection = '';
+  }
+  else{
+    licenseSection = `This project is licensed under the ${license} license.`;
+  }
+  return licenseSection;
 }
 
 function renderTitle(title) {
@@ -80,11 +100,12 @@ function renderQuestions(email, username){
 function generateMarkdown(data) {
   return `
   ${renderTitle(data.title)}
-  ${renderLicenseSection(data.license)}
+  ${renderLicenseLink(data.license)}
   ${renderDescription(data.description)}
   ${renderMenu(data)}
   ${renderInstallation(data.installation)}
   ${renderUsage(data.usage)}
+  ${renderLicenseSection(data.license)}
   ${renderContribution(data.contribution)}
   ${renderTests(data.test)}  
   ${renderQuestions(data.email, data.username)}
