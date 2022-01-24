@@ -39,59 +39,76 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   var licenseSection;
   if(license === 'None'){
-    licenseSection = '';
+    licenseSection = ``;
   }
   else{
-    licenseSection = `This project is licensed under the ${license} license.`;
+    licenseSection = `## License <a name = "license"></a>\n
+    This project is licensed under the ${license} license.`;
   }
   return licenseSection;
 }
 
 function renderTitle(title) {
-  return `# ${data.title}`;
+  return `# ${title}`;
 }
 
-function renderDescription(){
-  return `## Description \n${data.description}`;
+function renderDescription(description){
+  return `## Description \n${description}`;
 }
 
 function renderMenu(data){
-
+  var licenseHead;
+  if(data.license != "none"){
+    licenseHead = "* [License](#license)\n";
+  }
+  else{licenseHead = ""}
+  return `## Table of Contents\n
+  * [Installation](#installation)\n
+  * [Usage](#usage)\n
+  ${licenseHead}
+  * [Contributing](#contributing)\n
+  * [Tests](#tests)\n
+  * [Questions](#questions)`
 }
 
 function renderInstallation(installation){
-  var instructions = `## Installation \n
-  To install necessary dependencies, run the following command: \n
-  ```
-  `${data.installation}`
-  ```
+  var instructions = `## Installation <a name="installation"></a>\n
+  To install necessary dependencies, run the following command: \n`+
+  `
+  \`\`\`
+  ${installation}
+  \`\`\`
   `;
   return instructions;
 }
 
 function renderUsage(usage){
-  return `## Usage \n${data.usage}`;
+  return `## Usage <a name="usage"></a>\n
+  ${usage}`;
 }
 
 function renderContribution(contribution){
-  return `## Contributing \n${data.contribution}`;
+  return `## Contributing <a name="contribution"></a>\n
+  ${contribution}`;
 }
 
 function renderTests(test){
-  var testing = `## Tests \n
-  To run tests, run the following command: \n
-  ```
-  `${data.test}`
-  ```
-  `;
+  var testing = `## Tests <a name="tests"></a>\n
+  To run tests, run the following command: \n`+
+  `
+   \`\`\`
+   ${test}
+   \`\`\`
+ `
+  ;
   return testing;
 }
 
 function renderQuestions(email, username){
-  return `## Questions? \n
+  return `## Questions? <a name="questions"></a>\n
   If you have any questions about the repo, open an issue or contact me directly at
-   [${data.email}](${data.email}).\n
-   You can view more of my work on my GitHub profile here: [${data.username}](https://github.com/${data.username}/).`;
+   [${email}](${email}).\n
+   You can view more of my work on my GitHub profile here: [${username}](https://github.com/${username}/).`;
 
 }
 
@@ -99,16 +116,16 @@ function renderQuestions(email, username){
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
-  ${renderTitle(data.title)}
-  ${renderLicenseLink(data.license)}
-  ${renderDescription(data.description)}
-  ${renderMenu(data)}
-  ${renderInstallation(data.installation)}
-  ${renderUsage(data.usage)}
-  ${renderLicenseSection(data.license)}
-  ${renderContribution(data.contribution)}
-  ${renderTests(data.test)}  
-  ${renderQuestions(data.email, data.username)}
+  ${renderTitle(data.title)}\n
+  ${renderLicenseLink(data.license)}\n
+  ${renderDescription(data.description)}\n
+  ${renderMenu(data)}\n
+  ${renderInstallation(data.installation)}\n
+  ${renderUsage(data.usage)}\n
+  ${renderLicenseSection(data.license)}\n
+  ${renderContribution(data.contribution)}\n
+  ${renderTests(data.test)}\n
+  ${renderQuestions(data.email, data.username)}\n
 `;
 }
 

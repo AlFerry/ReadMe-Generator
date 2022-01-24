@@ -23,13 +23,13 @@ const questions = [
     {
         type: "input",
         name: "description",
-        message: "Please write a short description of your project",
+        message: "Please write a short description of your project:",
     },
     {
         type: "list",
         name: "license",
         message: "What kind of license should your project have?",
-        choices: ['MIT', 'APCHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
+        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
     },
     {
         type: "input",
@@ -59,6 +59,11 @@ const questions = [
 function writeToFile(fileName, data) {
     // use fs module to write to 'fileName'
     // data = 
+    fs.writeFile(
+        fileName,
+        `${data}`,
+        (err) => err ? console.error(err) : console.log('response logged')
+    )
 }
 
 // TODO: Create a function to initialize app
@@ -70,6 +75,7 @@ function init() {
             console.log(answers);
             const myMarkdown = markdown(answers);
             // CALL writeToFile function with your desired name and myMarkdown.
+            writeToFile('./output/README.md', myMarkdown);
     });
 }
 
