@@ -39,11 +39,10 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   var licenseSection;
   if(license === 'None'){
-    licenseSection = ``;
+    licenseSection = "";
   }
   else{
-    licenseSection = `## License <a name = "license"></a>\n
-    This project is licensed under the ${license} license.`;
+    licenseSection = `## License <a id ="license"></a> \nThis project is licensed under the ${license} license.`;
   }
   return licenseSection;
 }
@@ -59,20 +58,20 @@ function renderDescription(description){
 function renderMenu(data){
   var licenseHead;
   if(data.license != "none"){
-    licenseHead = "* [License](#license)\n";
+    licenseHead = "* [License](#license)";
   }
   else{licenseHead = ""}
   return `## Table of Contents\n
-  * [Installation](#installation)\n
-  * [Usage](#usage)\n
+  * [Installation](#installation)
+  * [Usage](#usage)
   ${licenseHead}
-  * [Contributing](#contributing)\n
-  * [Tests](#tests)\n
+  * [Contributing](#contribution)
+  * [Tests](#tests)
   * [Questions](#questions)`
 }
 
 function renderInstallation(installation){
-  var instructions = `## Installation <a name="installation"></a>\n
+  var instructions = `## Installation <a id="installation"></a>\n
   To install necessary dependencies, run the following command: \n`+
   `
   \`\`\`
@@ -83,17 +82,17 @@ function renderInstallation(installation){
 }
 
 function renderUsage(usage){
-  return `## Usage <a name="usage"></a>\n
+  return `## Usage <a id="usage"></a>\n
   ${usage}`;
 }
 
 function renderContribution(contribution){
-  return `## Contributing <a name="contribution"></a>\n
+  return `## Contributing <a id="contribution"></a>\n
   ${contribution}`;
 }
 
 function renderTests(test){
-  var testing = `## Tests <a name="tests"></a>\n
+  var testing = `## Tests <a id="tests"></a>\n
   To run tests, run the following command: \n`+
   `
    \`\`\`
@@ -105,7 +104,7 @@ function renderTests(test){
 }
 
 function renderQuestions(email, username){
-  return `## Questions? <a name="questions"></a>\n
+  return `## Questions? <a id="questions"></a>\n
   If you have any questions about the repo, open an issue or contact me directly at
    [${email}](${email}).\n
    You can view more of my work on my GitHub profile here: [${username}](https://github.com/${username}/).`;
